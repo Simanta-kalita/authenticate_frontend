@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./EditPage.styles.css";
+import styles from "./EditTicketPage.styles.css";
 import { validateEmail, validateName } from "../../utils/validators";
 
 export default function EditTicketPage() {
@@ -13,23 +13,17 @@ export default function EditTicketPage() {
   const history = useNavigate();
   const location = useLocation();
 
-  //   const index = ticketData
-  //     .map(function (e) {
-  //       return e.seatNo;
-  //     })
-  //     .indexOf(seatNo);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const { seatNo } = location.state;
 
-    console.log("data sub ", seatNo, firstName, lastName, email, seatNo);
-
+    // validation for FirstName, LastName and Email
     if (
       validateEmail(email) &&
       validateName(firstName) &&
       validateName(lastName)
     ) {
+      // update ticket data with the new data and save in local storage
       localStorage.setItem(
         JSON.stringify(seatNo),
         JSON.stringify({ firstName, lastName, email, seatNo, date })
@@ -43,6 +37,8 @@ export default function EditTicketPage() {
 
   useEffect(() => {
     const { seatNo } = location.state;
+
+    // Get previous Ticket data from local storage and update the state
     const ticketItem = JSON.parse(localStorage.getItem(JSON.stringify(seatNo)));
     const { firstName, lastName, email, date } = ticketItem;
     setFirstName(firstName);

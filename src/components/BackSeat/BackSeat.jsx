@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import Popup from "../Popup/Popup";
 import cx from "classnames";
-import styles from "./BackSeat.styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import TicketForm from "../TicketForm/TicketForm";
+import styles from "./BackSeat.styles.css";
 
 const customStyles = {
   content: {
@@ -65,7 +65,7 @@ export default function BackSeat(props) {
           class="fa fa-window-close"
           aria-hidden="true"
         ></i>
-        <Popup closeModal={closeModal} seatNo={seatNo} />
+        <TicketForm closeModal={closeModal} seatNo={seatNo} />
       </Modal>
     </>
   );

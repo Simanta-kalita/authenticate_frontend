@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Popup.styles.css";
+import styles from "./TicketForm.styles.css";
 import { validateEmail, validateName } from "../../utils/validators";
 
-const Popup = (props) => {
+const TicketForm = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,11 +36,14 @@ const Popup = (props) => {
     console.log("handleSubmit", { firstName, lastName, email, seatNo });
     const { closeModal } = props;
     event.preventDefault();
+
+    // validation for FirstName, LastName and Email
     if (
       validateEmail(email) &&
       validateName(firstName) &&
       validateName(lastName)
     ) {
+      // update ticket data with the entered data and save in local storage
       localStorage.setItem(
         JSON.stringify(seatNo),
         JSON.stringify({
@@ -60,7 +63,7 @@ const Popup = (props) => {
   return (
     <div className="formContainer">
       <div className="formHeaderContainer">
-        <h4 className="formHeader">Please enter the following details -</h4>
+        <h4 className="formHeader">Please enter the following details</h4>
       </div>
       <form className="form">
         <p>{`Seat number - ${seatNo}`}</p>
@@ -96,4 +99,4 @@ const Popup = (props) => {
   );
 };
 
-export default Popup;
+export default TicketForm;

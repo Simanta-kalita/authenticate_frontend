@@ -4,11 +4,14 @@ import { Button, Table } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import styles from "./DashBoardPage.styles.css";
+import Spinner from "../../components/Spinner/Spinner";
 
 const DashBoardPage = () => {
   const [ticketData, setTicketData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const history = useNavigate();
 
+  // check if data is JSON object
   const isJsonString = (str) => {
     try {
       JSON.parse(str);
@@ -18,6 +21,7 @@ const DashBoardPage = () => {
     return true;
   };
 
+  // on start of loading of page, get data from local storage and update the state
   useEffect(() => {
     const fetchData = async () => {
       let storageData = [];
@@ -34,7 +38,6 @@ const DashBoardPage = () => {
           ) {
             storageData.push(storageObj);
           }
-          console.log(storageData);
         }
       }
       setTicketData(storageData);
@@ -42,11 +45,14 @@ const DashBoardPage = () => {
     };
 
     fetchData();
+    setLoading(false);
   }, []);
 
+  // delete ticket
   const handleDelete = (seatNo) => {
     localStorage.removeItem(JSON.stringify(seatNo));
 
+    // get index of delete data, to be removed from state
     const index = ticketData
       .map(function (e) {
         return e.seatNo;
@@ -58,7 +64,9 @@ const DashBoardPage = () => {
     history("/dashboard");
   };
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <>
       <Header />
       <div className="dashboardHeader">
@@ -86,6 +94,7 @@ const DashBoardPage = () => {
                   <td style={{ textAlign: "center" }}>{item.email}</td>
                   <td style={{ textAlign: "center" }}>{item.date}</td>
                   <td style={{ textAlign: "center" }}>
+                    {/* route to edit page on click of EDIT ticket */}
                     <Link
                       to={"/edit"}
                       state={{

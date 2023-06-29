@@ -10,3 +10,8 @@
   --borderseatlight: #aeb0b3;
   --backgroundgray: #eeeded;
 }
+
+.busimage {
+  width: 100%;
+  height: 100%;
+}

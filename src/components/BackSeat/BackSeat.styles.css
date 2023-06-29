@@ -1,12 +1,23 @@
 .backSeat {
   position: relative;
-  height: 3.8rem;
-  width: 40%;
-  border: 2px solid black;
+  height: 3.7rem;
+  width: 35%;
+  border: 1.6px solid var(--borderdark);
   display: flex;
   justify-content: flex-end;
   align-items: center;
   background-color: var(--mediumgray);
+}
+
+.modal {
+  top: "50%";
+  left: "50%";
+  right: "auto";
+  bottom: "auto";
+  margin-right: "-50%";
+  transform: translate(-50%, -50%);
+  background-color: "white";
+  width: 400;
 }
 
 .backSeatLower {
@@ -21,8 +32,8 @@
   height: 60%;
   width: 30%;
   margin-right: 2px;
-  border-radius: 4px;
-  border: 2px solid black;
+  border-radius: 3px;
+  border: 1.6px solid var(--borderdark);
 }
 
 @media (max-width: 480px) {
