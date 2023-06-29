@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import styles from "./Popup.styles.css";
+import { validateEmail, validateName } from "../../utils/validators";
 
 const Popup = (props) => {
   const [firstName, setFirstName] = useState("");
@@ -14,6 +16,7 @@ const Popup = (props) => {
 
   const handleInput = (event) => {
     const { name, value } = event.target;
+
     switch (name) {
       case "firstName":
         setFirstName(value);
@@ -32,23 +35,40 @@ const Popup = (props) => {
   const handleSubmit = (event) => {
     console.log("handleSubmit", { firstName, lastName, email, seatNo });
     const { closeModal } = props;
-    localStorage.setItem(
-      JSON.stringify(seatNo),
-      JSON.stringify({ firstName, lastName, email, seatNo })
-    );
     event.preventDefault();
-    closeModal();
+    if (
+      validateEmail(email) &&
+      validateName(firstName) &&
+      validateName(lastName)
+    ) {
+      localStorage.setItem(
+        JSON.stringify(seatNo),
+        JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          seatNo,
+          date: new Date().toDateString(),
+        })
+      );
+      closeModal();
+    } else {
+      alert("Please enter valid email and name");
+    }
   };
 
   return (
-    <div>
-      <h4>Please Enter the Details</h4>
-      <form>
-        <p>{seatNo}</p>
+    <div className="formContainer">
+      <div className="formHeaderContainer">
+        <h4 className="formHeader">Please enter the following details -</h4>
+      </div>
+      <form className="form">
+        <p>{`Seat number - ${seatNo}`}</p>
         <input
           type="text"
           name="firstName"
           placeholder="First Name"
+          className="formItem"
           value={firstName}
           onChange={handleInput}
         />
@@ -56,6 +76,7 @@ const Popup = (props) => {
           type="text"
           name="lastName"
           placeholder="Last Name"
+          className="formItem"
           value={lastName}
           onChange={handleInput}
         />
@@ -63,10 +84,11 @@ const Popup = (props) => {
           type="text"
           name="email"
           placeholder="Email Address"
+          className="formItem"
           value={email}
           onChange={handleInput}
         />
-        <button type="submit" onClick={handleSubmit}>
+        <button className="formButton" type="submit" onClick={handleSubmit}>
           Buy Ticket
         </button>
       </form>

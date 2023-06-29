@@ -1,0 +1,18 @@
+.dashboardHeader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.dashBoardText {
+  color: var(--red);
+}
+
+.editButton {
+  background-color: var(--red) !important;
+}
+
+.deleteButton {
+  background-color: var(--darkgray) !important;
+}

@@ -20,17 +20,30 @@ const ReservationPage = () => {
         <div className="busViewLower" style={styles.busViewLower}>
           <div className="deck">Lower Deck</div>
           <div className="busViewLowerContainer">
-            <div className="driver"></div>
+            <div className="driver">
+              <div className="driverArea">
+                <div className="steeringwheel"></div>
+              </div>
+            </div>
             <div className="seatContainer">
               <div className={cx("seatRow", "doubleSpecific")}>
-                {getSeatNumber(1, 11).map((num) => {
+                <Seat seatNo={1} />
+                <Seat seatNo={2} color="grey" />
+                <Seat seatNo={3} color="red" />
+                {getSeatNumber(4, 7).map((num) => {
                   return <Seat seatNo={num} />;
                 })}
+                <Seat seatNo={7} color="grey" />
+                <Seat seatNo={8} color="grey" />
+                <Seat seatNo={9} />
+                <Seat seatNo={10} />
               </div>
               <div className="seatRow">
-                {getSeatNumber(11, 16).map((num) => {
-                  return <Seat seatNo={num} />;
-                })}
+                <Seat seatNo={11} color="red" />
+                <Seat seatNo={12} color="grey" />
+                <Seat seatNo={13} color="red" />
+                <Seat seatNo={14} color="grey" />
+                <Seat seatNo={15} color="grey" />
               </div>
             </div>
             <div className="backSide">
@@ -42,16 +55,25 @@ const ReservationPage = () => {
           <div className="deck">Upper Deck</div>
           <div className={cx("busViewLowerContainer", "busViewUpperContainer")}>
             <div className="driver"></div>
-            <div className="seatContainer">
+            <div className={cx("seatContainer", "upperSeatContainer")}>
               <div className={cx("seatRow", "doubleSpecific")}>
-                {getSeatNumber(17, 27).map((num) => {
+                <Seat seatNo={17} color="grey" />
+                {getSeatNumber(18, 20).map((num) => {
                   return <Seat seatNo={num} />;
                 })}
+                <Seat seatNo={20} color="grey" />
+                {getSeatNumber(21, 25).map((num) => {
+                  return <Seat seatNo={num} />;
+                })}
+                <Seat seatNo={25} color="grey" />
+                <Seat seatNo={26} />
               </div>
               <div className="seatRow">
-                {getSeatNumber(27, 32).map((num) => {
-                  return <Seat deck="upper" seatNo={num} />;
-                })}
+                <Seat seatNo={27} color="grey" />
+                <Seat seatNo={28} color="grey" />
+                <Seat seatNo={29} color="red" />
+                <Seat seatNo={30} color="grey" />
+                <Seat seatNo={31} />
               </div>
             </div>
             <div className="backSide">

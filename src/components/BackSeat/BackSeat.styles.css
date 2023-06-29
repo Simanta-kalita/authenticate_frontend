@@ -6,14 +6,15 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: var(--mediumgray);
 }
 
 .backSeatLower {
-  top: 20%;
+  top: 30%;
 }
 
 .backSeatUpper {
-  top: 50%;
+  top: 60%;
 }
 
 .backCushion {

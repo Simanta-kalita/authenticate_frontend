@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
+import styles from "./EditPage.styles.css";
+import { validateEmail, validateName } from "../../utils/validators";
 
 export default function EditTicketPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
 
   const history = useNavigate();
   const location = useLocation();
@@ -17,34 +20,42 @@ export default function EditTicketPage() {
   //     .indexOf(seatNo);
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const { seatNo } = location.state;
 
     console.log("data sub ", seatNo, firstName, lastName, email, seatNo);
 
-    e.preventDefault();
+    if (
+      validateEmail(email) &&
+      validateName(firstName) &&
+      validateName(lastName)
+    ) {
+      localStorage.setItem(
+        JSON.stringify(seatNo),
+        JSON.stringify({ firstName, lastName, email, seatNo, date })
+      );
 
-    localStorage.setItem(
-      JSON.stringify(seatNo),
-      JSON.stringify({ firstName, lastName, email, seatNo })
-    );
-
-    history("/dashboard");
+      history("/dashboard");
+    } else {
+      alert("Please enter valid email and name");
+    }
   };
 
   useEffect(() => {
-    console.log(location.state);
     const { seatNo } = location.state;
     const ticketItem = JSON.parse(localStorage.getItem(JSON.stringify(seatNo)));
-    const { firstName, lastName, email } = ticketItem;
+    const { firstName, lastName, email, date } = ticketItem;
     setFirstName(firstName);
     setLastName(lastName);
     setEmail(email);
+    setDate(date);
   }, []);
 
   return (
-    <div>
-      <Form style={{ margin: "15rem" }}>
-        <Form.Group controlId="formFirstName">
+    <div className="editFormContainer">
+      <Form className="editForm" style={{ margin: "10rem 15rem 15rem 15rem" }}>
+        <Form.Group className="editFormItem" controlId="formFirstName">
+          <h3>First Name</h3>
           <FormControl
             type="text"
             placeholder="Enter First Name"
@@ -53,7 +64,8 @@ export default function EditTicketPage() {
             onChange={(e) => setFirstName(e.target.value)}
           ></FormControl>
         </Form.Group>
-        <Form.Group controlId="formLastName">
+        <Form.Group className="editFormItem" controlId="formLastName">
+          <h3>Last Name</h3>
           <FormControl
             type="text"
             placeholder="Enter Last Name"
@@ -62,7 +74,8 @@ export default function EditTicketPage() {
             onChange={(e) => setLastName(e.target.value)}
           ></FormControl>
         </Form.Group>
-        <Form.Group controlId="formEmail">
+        <Form.Group className="editFormItem" controlId="formEmail">
+          <h3>Email</h3>
           <FormControl
             type="text"
             placeholder="Enter Email"
@@ -71,7 +84,11 @@ export default function EditTicketPage() {
             onChange={(e) => setEmail(e.target.value)}
           ></FormControl>
         </Form.Group>
-        <Button onClick={(e) => handleSubmit(e)} type="submit">
+        <Button
+          className="updateButton"
+          onClick={(e) => handleSubmit(e)}
+          type="submit"
+        >
           Update
         </Button>
       </Form>

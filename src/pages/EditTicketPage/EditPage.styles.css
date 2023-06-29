@@ -1,0 +1,24 @@
+.editFormContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.editForm {
+  background-color: var(--lightgray);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+  border-radius: 5px;
+}
+
+.editFormItem {
+  margin: 2rem;
+}
+
+.updateButton {
+  margin: 1rem 0 3rem 0;
+  background-color: var(--red) !important;
+}

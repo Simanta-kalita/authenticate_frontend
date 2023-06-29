@@ -4,6 +4,8 @@ import DashBoardPage from "./pages/DashBoardPage/DashBoardPage";
 import ReservationPage from "./pages/ReservationPage/ReservationPage";
 import EditTicketPage from "./pages/EditTicketPage/EditTicketPage";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import "semantic-ui-css/semantic.min.css";
 
 function App() {
   return (

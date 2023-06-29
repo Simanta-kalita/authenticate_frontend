@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #d9dbd3;
+  background-color: var(--lightgray);
   padding: 2rem 0rem 1.5rem 0rem;
 }
 
@@ -14,21 +14,51 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #d62b47;
+  background-color: var(--red);
   color: white;
 }
 
 .deck {
-  background-color: #d9dbd3;
+  background-color: var(--lightgray);
   font-size: large;
+  padding-bottom: 0.2rem;
 }
 
 .driver {
   width: 15%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.driverArea {
+  height: 85%;
+  width: 70%;
+  border-right: 3px solid var(--lightgray);
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.steeringwheel {
+  position: relative;
+  background-color: #fff;
+  border: 3px solid var(--lightgray);
+  height: 2rem;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  width: 2rem;
+  top: 8%;
 }
 
 .seatContainer {
   width: 70%;
+  padding: 2rem 0rem 4rem 0rem;
+}
+
+.upperSeatContainer {
+  padding: 4rem 0rem 2rem 0rem;
 }
 
 .backSide {
@@ -46,14 +76,6 @@
   column-gap: 1.5rem;
 }
 
-/* .seat {
-  position: relative;
-  height: 2rem;
-  width: 100%;
-  border-color: black;
-  background-color: blue;
-} */
-
 .doubleSpecific {
   margin-bottom: 3rem;
 }
@@ -70,11 +92,12 @@
   flex-direction: row;
   justify-content: flex-start;
   background-color: white;
-  padding: 2rem 0rem 4rem 0rem;
+  /* padding: 2rem 0rem 4rem 0rem; */
+  border-left: 8px solid var(--darkgray);
 }
 
 .busViewUpperContainer {
-  padding: 4rem 0rem 2rem 0rem;
+  /* padding: 4rem 0rem 2rem 0rem; */
 }
 
 @media (max-width: 480px) {
@@ -83,11 +106,12 @@
     column-gap: 2px;
   }
 
-  /* .seat {
-    height: 0.5rem;
-  } */
-
   .doubleSpecific {
     margin-bottom: 0.5rem;
+  }
+
+  .steeringwheel {
+    height: 0.5rem;
+    width: 0.5rem;
   }
 }

@@ -3,6 +3,7 @@ import _ from "lodash";
 import { Button, Table } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import styles from "./DashBoardPage.styles.css";
 
 const DashBoardPage = () => {
   const [ticketData, setTicketData] = useState([]);
@@ -28,7 +29,7 @@ const DashBoardPage = () => {
           if (
             storageObj &&
             _.get(storageObj, "firstName") &&
-            _.get(storageObj, "firstName") &&
+            _.get(storageObj, "lastName") &&
             _.get(storageObj, "email")
           ) {
             storageData.push(storageObj);
@@ -42,8 +43,6 @@ const DashBoardPage = () => {
 
     fetchData();
   }, []);
-
-  const handleEdit = () => {};
 
   const handleDelete = (seatNo) => {
     localStorage.removeItem(JSON.stringify(seatNo));
@@ -62,24 +61,31 @@ const DashBoardPage = () => {
   return (
     <>
       <Header />
+      <div className="dashboardHeader">
+        <h1 className="dashBoardText">DashBoard</h1>
+      </div>
       <div style={{ margin: "10rem" }}>
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
-              <th>Seat Number</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Actions</th>
+              <th style={{ textAlign: "center" }}>Seat Number</th>
+              <th style={{ textAlign: "center" }}>Name</th>
+              <th style={{ textAlign: "center" }}>Email</th>
+              <th style={{ textAlign: "center" }}>Date</th>
+              <th style={{ textAlign: "center" }}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {ticketData && ticketData.length > 0 ? (
               ticketData.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.seatNo}</td>
-                  <td>{`${item.firstName} ${item.lastName}`}</td>
-                  <td>{item.email}</td>
-                  <td>
+                  <td style={{ textAlign: "center" }}>{item.seatNo}</td>
+                  <td
+                    style={{ textAlign: "center" }}
+                  >{`${item.firstName} ${item.lastName}`}</td>
+                  <td style={{ textAlign: "center" }}>{item.email}</td>
+                  <td style={{ textAlign: "center" }}>{item.date}</td>
+                  <td style={{ textAlign: "center" }}>
                     <Link
                       to={"/edit"}
                       state={{
@@ -87,23 +93,17 @@ const DashBoardPage = () => {
                         firstName: item.firstName,
                         lastName: item.lastName,
                         email: item.email,
+                        date: item.date,
                       }}
+                      style={{ margin: "1rem" }}
                     >
-                      <Button
-                        onClick={() =>
-                          handleEdit(
-                            item.seatNo,
-                            item.firstName,
-                            item.lastName,
-                            item.email,
-                            ticketData
-                          )
-                        }
-                      >
-                        Edit
-                      </Button>
+                      <Button className="editButton">Edit</Button>
                     </Link>
-                    <Button onClick={() => handleDelete(item.seatNo)}>
+                    <Button
+                      style={{ margin: "1rem" }}
+                      className="deleteButton"
+                      onClick={() => handleDelete(item.seatNo)}
+                    >
                       Delete
                     </Button>
                   </td>
