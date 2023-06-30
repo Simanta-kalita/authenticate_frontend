@@ -5,6 +5,10 @@
   position: relative;
 }
 
+.board {
+  margin: 10rem;
+}
+
 .dashBoardText {
   color: var(--red);
 }
@@ -15,4 +19,10 @@
 
 .deleteButton {
   background-color: var(--darkgray) !important;
+}
+
+@media (max-width: 480px) {
+  .board {
+    margin: 0;
+  }
 }

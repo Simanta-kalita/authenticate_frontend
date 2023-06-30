@@ -72,7 +72,7 @@ const DashBoardPage = () => {
       <div className="dashboardHeader">
         <h1 className="dashBoardText">DashBoard</h1>
       </div>
-      <div style={{ margin: "10rem" }}>
+      <div className="board">
         <Table striped bordered hover size="sm">
           <thead>
             <tr>

@@ -37,11 +37,7 @@
 }
 
 @media (max-width: 480px) {
-  .backSeat {
-    height: 1rem;
-  }
-
-  .backSeat {
-    height: 1.5rem;
+  .seat {
+    height: 2rem;
   }
 }

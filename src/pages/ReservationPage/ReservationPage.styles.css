@@ -130,3 +130,26 @@
     width: 1.5rem;
   }
 }
+
+@media (max-width: 480px) {
+  .seatContainer {
+    width: 100%;
+  }
+
+  .reserveLayout {
+    padding: 0;
+  }
+
+  .busViewLower {
+    width: 90%;
+  }
+
+  .busViewLowerContainer {
+    width: 100%;
+  }
+
+  .seatRow {
+    row-gap: 1px;
+    column-gap: 1px;
+  }
+}
