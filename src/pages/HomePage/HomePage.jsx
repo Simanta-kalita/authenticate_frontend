@@ -17,7 +17,9 @@ const HomePage = () => {
   ) : (
     <div>
       <Header />
-      <img className="busimage" src={image} alt="img" />
+      <div style={{ textAlign: "center" }}>
+        <img className="busimage" src={image} alt="img" />
+      </div>
     </div>
   );
 };
