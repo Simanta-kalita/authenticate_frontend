@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Alert from "react-bootstrap/Alert";
 import styles from "./TicketForm.styles.css";
 import { validateEmail, validateName } from "../../utils/validators";
 
@@ -7,6 +8,7 @@ const TicketForm = (props) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [seatNo, setSeatNo] = useState("");
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const { seatNo: propSeatNo } = props;
@@ -54,7 +56,10 @@ const TicketForm = (props) => {
           date: new Date().toDateString(),
         })
       );
-      closeModal();
+
+      // giving time to see the message
+      setTimeout(() => closeModal(), 2000);
+      setSuccess(true);
     } else {
       alert("Please enter valid email and name");
     }
@@ -95,6 +100,17 @@ const TicketForm = (props) => {
           Buy Ticket
         </button>
       </form>
+      {success ? (
+        <Alert
+          style={{ marginTop: "2rem", textAlign: "center" }}
+          key={"success"}
+          variant={"success"}
+        >
+          Success! Your Seat Number {seatNo} is booked!
+        </Alert>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
